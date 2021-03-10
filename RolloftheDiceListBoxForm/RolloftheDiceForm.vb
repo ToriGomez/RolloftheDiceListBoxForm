@@ -2,20 +2,22 @@
 Option Strict On
 Public Class RolloftheDiceForm
     Private Sub RolloftheDiceForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        HiddenDisplayTextBox.Enabled = False
+        HiddenDisplayTextBox.Visible = False
+        HiddenDisplayComboBox.Visible = False
     End Sub
 
-    Private Sub RollButton_Click(sender As Object, e As EventArgs) Handles RollButton.Click
+    Private Sub RollButton_Click(sender As Object, e As EventArgs) Handles RollButton.Click, RollTopMenuItem.Click
         Dim rollsResult As Integer
         Dim diceValue As Integer = 1
         Dim numbers(12) As Integer
         Dim display(4) As String
-        Dim title As String = (vbTab & vbTab & vbTab & "Roll of the Dice")
-        Dim dashRow As String = (StrDup(84, " - "))
+        Dim title As String = (vbTab & vbTab & vbTab & "Roll of the Dice") _
+            & vbNewLine & (StrDup(84, "-"))
+        Dim dashRow As String = vbNewLine & (StrDup(84, " - "))
         Dim diceValueTotal As String
 
-
         RolloftheDiceListBox.Items.Clear()
+        HiddenDisplayComboBox.Items.Clear()
         'Generates the sum of two dice rolled values. Min of 2, Max of 12.
         'Accumulates the amount of times each value is rolled from 1000 rolls.
         For i = 1 To 1000
@@ -49,36 +51,45 @@ Public Class RolloftheDiceForm
         Next
 
         For i = 2 To UBound(numbers)
-            diceValueTotal = ($"{numbers(i)}|".PadLeft(4) & vbTab)
+            diceValueTotal = vbNewLine & ($"{numbers(i)}|".PadLeft(4) & vbTab) _
+                & vbNewLine & (StrDup(84, " - "))
         Next
 
-        display(0) = title
-        display(1) = dashRow
-        display(2) = DiceValueDisplay()
-        display(3) = dashRow
-        display(4) = diceValueTotal
+        HiddenDisplayTextBox.Text = title & DiceValueDisplay() & diceValueTotal
+        HiddenDisplayComboBox.Items.Add(HiddenDisplayTextBox.Text)
+        RolloftheDiceListBox.Items.Add(HiddenDisplayTextBox.Text)
+        HiddenDisplayComboBox.Sorted = True
+        RolloftheDiceListBox.Sorted = True
+        HiddenDisplayComboBox.SelectedIndex = HiddenDisplayComboBox.Items.IndexOf(HiddenDisplayTextBox.Text)
+        HiddenDisplayTextBox.Text = ""
+
+        'display(0) = title
+        'display(1) = dashRow
+        'display(2) = DiceValueDisplay()
+        'display(3) = dashRow
+        'display(4) = diceValueTotal
 
         'CancatinateDisplay(title, dashRow, DiceValueDisplay())
-        RolloftheDiceListBox.Items.Add(display(0) & display(1))
-        RolloftheDiceListBox.EndUpdate()
+        'RolloftheDiceListBox.Items.Add(display(0) & display(1))
+        'RolloftheDiceListBox.EndUpdate()
     End Sub
-    'Function CancatinateDisplay(title As String, spacing As String, value As String _
-    '                             & valuetotal As String) As String
-    '    Return title + spacing
-    'End Function
+    Private Sub HiddenDisplayComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles HiddenDisplayComboBox.SelectedIndexChanged
+        Me.Text = CStr(HiddenDisplayComboBox.SelectedIndex)
+        RolloftheDiceListBox.SelectedIndex = HiddenDisplayComboBox.SelectedIndex
+    End Sub
+    Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click, ClearTopMenuItem.Click
+        RolloftheDiceListBox.Items.Clear()
+    End Sub
+    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click, ExitTopMenuItem.Click
+        Me.Close()
+    End Sub
     Function DiceValueDisplay() As String
         Dim countDisplay As String
         For i = 2 To 12
-            countDisplay = (($"{i}|").PadLeft(4) & vbTab)
+            countDisplay = vbNewLine & (($"{i}|").PadLeft(4) & vbTab)
         Next
         Return countDisplay
     End Function
-    Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click
-        RolloftheDiceListBox.Items.Clear()
-    End Sub
-    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
-        Me.Close()
-    End Sub
 
     'Random value of roll of two dice
     Function RandomNumber() As Integer
