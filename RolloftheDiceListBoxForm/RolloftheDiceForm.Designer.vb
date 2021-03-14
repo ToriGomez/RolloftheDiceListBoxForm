@@ -22,6 +22,7 @@ Partial Class RolloftheDiceForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.TopMenuStrip = New System.Windows.Forms.MenuStrip()
         Me.MenuTopMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RollTopMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -33,6 +34,7 @@ Partial Class RolloftheDiceForm
         Me.RollButton = New System.Windows.Forms.Button()
         Me.ClearButton = New System.Windows.Forms.Button()
         Me.ExitButton = New System.Windows.Forms.Button()
+        Me.RolloftheDiceToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.TopMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -43,7 +45,7 @@ Partial Class RolloftheDiceForm
         Me.TopMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MenuTopMenuItem, Me.HelpTopMenuItem})
         Me.TopMenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.TopMenuStrip.Name = "TopMenuStrip"
-        Me.TopMenuStrip.Size = New System.Drawing.Size(1124, 49)
+        Me.TopMenuStrip.Size = New System.Drawing.Size(1124, 52)
         Me.TopMenuStrip.TabIndex = 4
         Me.TopMenuStrip.Text = "MenuStrip1"
         '
@@ -51,39 +53,43 @@ Partial Class RolloftheDiceForm
         '
         Me.MenuTopMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RollTopMenuItem, Me.ClearTopMenuItem, Me.ExitTopMenuItem})
         Me.MenuTopMenuItem.Name = "MenuTopMenuItem"
-        Me.MenuTopMenuItem.Size = New System.Drawing.Size(119, 45)
+        Me.MenuTopMenuItem.Size = New System.Drawing.Size(119, 48)
         Me.MenuTopMenuItem.Text = "&Menu"
         '
         'RollTopMenuItem
         '
         Me.RollTopMenuItem.Name = "RollTopMenuItem"
-        Me.RollTopMenuItem.Size = New System.Drawing.Size(251, 54)
+        Me.RollTopMenuItem.Size = New System.Drawing.Size(448, 54)
         Me.RollTopMenuItem.Text = "&Roll"
+        Me.RollTopMenuItem.ToolTipText = "Shortcut to Roll Control."
         '
         'ClearTopMenuItem
         '
         Me.ClearTopMenuItem.Name = "ClearTopMenuItem"
-        Me.ClearTopMenuItem.Size = New System.Drawing.Size(251, 54)
+        Me.ClearTopMenuItem.Size = New System.Drawing.Size(448, 54)
         Me.ClearTopMenuItem.Text = "&Clear"
+        Me.ClearTopMenuItem.ToolTipText = "Shortcut to Clear Control."
         '
         'ExitTopMenuItem
         '
         Me.ExitTopMenuItem.Name = "ExitTopMenuItem"
-        Me.ExitTopMenuItem.Size = New System.Drawing.Size(251, 54)
+        Me.ExitTopMenuItem.Size = New System.Drawing.Size(448, 54)
         Me.ExitTopMenuItem.Text = "&Exit"
+        Me.ExitTopMenuItem.ToolTipText = "Shortcut to Exit Control."
         '
         'HelpTopMenuItem
         '
         Me.HelpTopMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutTopMenuItem})
         Me.HelpTopMenuItem.Name = "HelpTopMenuItem"
-        Me.HelpTopMenuItem.Size = New System.Drawing.Size(104, 45)
+        Me.HelpTopMenuItem.Size = New System.Drawing.Size(104, 48)
         Me.HelpTopMenuItem.Text = "&Help"
         '
         'AboutTopMenuItem
         '
         Me.AboutTopMenuItem.Name = "AboutTopMenuItem"
-        Me.AboutTopMenuItem.Size = New System.Drawing.Size(266, 54)
+        Me.AboutTopMenuItem.Size = New System.Drawing.Size(448, 54)
         Me.AboutTopMenuItem.Text = "&About"
+        Me.AboutTopMenuItem.ToolTipText = "Program Description."
         '
         'RolloftheDiceListBox
         '
@@ -94,6 +100,7 @@ Partial Class RolloftheDiceForm
         Me.RolloftheDiceListBox.Name = "RolloftheDiceListBox"
         Me.RolloftheDiceListBox.Size = New System.Drawing.Size(978, 388)
         Me.RolloftheDiceListBox.TabIndex = 1
+        Me.RolloftheDiceToolTip.SetToolTip(Me.RolloftheDiceListBox, "Display of the rolled dice.")
         '
         'RollButton
         '
@@ -102,6 +109,7 @@ Partial Class RolloftheDiceForm
         Me.RollButton.Size = New System.Drawing.Size(249, 156)
         Me.RollButton.TabIndex = 0
         Me.RollButton.Text = "&Roll"
+        Me.RolloftheDiceToolTip.SetToolTip(Me.RollButton, "Enter Roll to see results of two dice rolled 1000 times.")
         Me.RollButton.UseVisualStyleBackColor = True
         '
         'ClearButton
@@ -111,6 +119,7 @@ Partial Class RolloftheDiceForm
         Me.ClearButton.Size = New System.Drawing.Size(249, 156)
         Me.ClearButton.TabIndex = 2
         Me.ClearButton.Text = "&Clear"
+        Me.RolloftheDiceToolTip.SetToolTip(Me.ClearButton, "Enter Clear to reset the rolled dice.")
         Me.ClearButton.UseVisualStyleBackColor = True
         '
         'ExitButton
@@ -120,6 +129,7 @@ Partial Class RolloftheDiceForm
         Me.ExitButton.Size = New System.Drawing.Size(249, 156)
         Me.ExitButton.TabIndex = 3
         Me.ExitButton.Text = "&Exit"
+        Me.RolloftheDiceToolTip.SetToolTip(Me.ExitButton, "Enter Exit to close the program.")
         Me.ExitButton.UseVisualStyleBackColor = True
         '
         'RolloftheDiceForm
@@ -154,4 +164,5 @@ Partial Class RolloftheDiceForm
     Friend WithEvents RollButton As Button
     Friend WithEvents ClearButton As Button
     Friend WithEvents ExitButton As Button
+    Friend WithEvents RolloftheDiceToolTip As ToolTip
 End Class

@@ -12,7 +12,7 @@ Public Class RolloftheDiceForm
         Dim diceValue As Integer = 1
         Dim numbers(12) As Integer
         Dim display(4) As String
-        Dim title As String = (("Roll of the Dice").PadLeft(5))
+        Dim title As String = Space(20) & "Roll of the Dice"
         Dim dashRow As String = (StrDup(84, " - "))
         Dim countDisplay As String = ""
         Dim diceValueTotal As String = ""
@@ -71,5 +71,10 @@ Public Class RolloftheDiceForm
     'Closes console when Exit button is clicked or when it is selected in the menu items.
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click, ExitTopMenuItem.Click
         Me.Close()
+    End Sub
+    'Little description of the program when the about menu is selected.
+    Private Sub AboutTopMenuItem_Click(sender As Object, e As EventArgs) Handles AboutTopMenuItem.Click
+        MsgBox("Welcome to Roll of the Dice!! " & vbNewLine & "Click roll to see values rolled, clear to clear the dice," _
+            & " exit to close the program." & vbNewLine & "Let the rolls begin!")
     End Sub
 End Class
