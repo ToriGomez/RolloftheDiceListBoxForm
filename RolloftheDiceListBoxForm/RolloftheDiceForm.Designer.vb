@@ -33,8 +33,6 @@ Partial Class RolloftheDiceForm
         Me.RollButton = New System.Windows.Forms.Button()
         Me.ClearButton = New System.Windows.Forms.Button()
         Me.ExitButton = New System.Windows.Forms.Button()
-        Me.HiddenDisplayTextBox = New System.Windows.Forms.TextBox()
-        Me.HiddenDisplayComboBox = New System.Windows.Forms.ComboBox()
         Me.TopMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -45,7 +43,7 @@ Partial Class RolloftheDiceForm
         Me.TopMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MenuTopMenuItem, Me.HelpTopMenuItem})
         Me.TopMenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.TopMenuStrip.Name = "TopMenuStrip"
-        Me.TopMenuStrip.Size = New System.Drawing.Size(1124, 60)
+        Me.TopMenuStrip.Size = New System.Drawing.Size(1124, 49)
         Me.TopMenuStrip.TabIndex = 4
         Me.TopMenuStrip.Text = "MenuStrip1"
         '
@@ -89,11 +87,12 @@ Partial Class RolloftheDiceForm
         '
         'RolloftheDiceListBox
         '
+        Me.RolloftheDiceListBox.Font = New System.Drawing.Font("Consolas", 8.1!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RolloftheDiceListBox.FormattingEnabled = True
-        Me.RolloftheDiceListBox.ItemHeight = 31
+        Me.RolloftheDiceListBox.ItemHeight = 32
         Me.RolloftheDiceListBox.Location = New System.Drawing.Point(56, 106)
         Me.RolloftheDiceListBox.Name = "RolloftheDiceListBox"
-        Me.RolloftheDiceListBox.Size = New System.Drawing.Size(978, 407)
+        Me.RolloftheDiceListBox.Size = New System.Drawing.Size(978, 388)
         Me.RolloftheDiceListBox.TabIndex = 1
         '
         'RollButton
@@ -123,28 +122,11 @@ Partial Class RolloftheDiceForm
         Me.ExitButton.Text = "&Exit"
         Me.ExitButton.UseVisualStyleBackColor = True
         '
-        'HiddenDisplayTextBox
-        '
-        Me.HiddenDisplayTextBox.Location = New System.Drawing.Point(12, 540)
-        Me.HiddenDisplayTextBox.Name = "HiddenDisplayTextBox"
-        Me.HiddenDisplayTextBox.Size = New System.Drawing.Size(100, 38)
-        Me.HiddenDisplayTextBox.TabIndex = 5
-        '
-        'HiddenDisplayComboBox
-        '
-        Me.HiddenDisplayComboBox.FormattingEnabled = True
-        Me.HiddenDisplayComboBox.Location = New System.Drawing.Point(12, 584)
-        Me.HiddenDisplayComboBox.Name = "HiddenDisplayComboBox"
-        Me.HiddenDisplayComboBox.Size = New System.Drawing.Size(121, 39)
-        Me.HiddenDisplayComboBox.TabIndex = 6
-        '
         'RolloftheDiceForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(16.0!, 31.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1124, 769)
-        Me.Controls.Add(Me.HiddenDisplayComboBox)
-        Me.Controls.Add(Me.HiddenDisplayTextBox)
         Me.Controls.Add(Me.ExitButton)
         Me.Controls.Add(Me.ClearButton)
         Me.Controls.Add(Me.RollButton)
@@ -152,6 +134,7 @@ Partial Class RolloftheDiceForm
         Me.Controls.Add(Me.TopMenuStrip)
         Me.MainMenuStrip = Me.TopMenuStrip
         Me.Name = "RolloftheDiceForm"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Roll of the Dice"
         Me.TopMenuStrip.ResumeLayout(False)
         Me.TopMenuStrip.PerformLayout()
@@ -171,6 +154,4 @@ Partial Class RolloftheDiceForm
     Friend WithEvents RollButton As Button
     Friend WithEvents ClearButton As Button
     Friend WithEvents ExitButton As Button
-    Friend WithEvents HiddenDisplayTextBox As TextBox
-    Friend WithEvents HiddenDisplayComboBox As ComboBox
 End Class

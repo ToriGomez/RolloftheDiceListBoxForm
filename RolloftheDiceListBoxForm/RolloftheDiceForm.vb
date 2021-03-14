@@ -1,27 +1,31 @@
-﻿Option Explicit On
+﻿'Tori Gomez 
+'RCET0265
+'Spring 2021
+'Roll of the Dice Form
+'https://github.com/ToriGomez/RolloftheDiceListBoxForm.git
+
+Option Explicit On
 Option Strict On
 Public Class RolloftheDiceForm
-    Private Sub RolloftheDiceForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        HiddenDisplayTextBox.Visible = False
-        HiddenDisplayComboBox.Visible = False
-    End Sub
-
     Private Sub RollButton_Click(sender As Object, e As EventArgs) Handles RollButton.Click, RollTopMenuItem.Click
         Dim rollsResult As Integer
         Dim diceValue As Integer = 1
         Dim numbers(12) As Integer
         Dim display(4) As String
-        Dim title As String = (vbTab & vbTab & vbTab & "Roll of the Dice") _
-            & vbNewLine & (StrDup(84, "-"))
-        Dim dashRow As String = vbNewLine & (StrDup(84, " - "))
-        Dim diceValueTotal As String
-
+        Dim title As String = (("Roll of the Dice").PadLeft(5))
+        Dim dashRow As String = (StrDup(84, " - "))
+        Dim countDisplay As String = ""
+        Dim diceValueTotal As String = ""
+        'Clears listbox for every roll button click to generate new numbers.
         RolloftheDiceListBox.Items.Clear()
-        HiddenDisplayComboBox.Items.Clear()
+        'Adds two dice rolled values, 2-12 to the display array.
+        For i = 2 To 12
+            countDisplay &= (($"{i}|").PadLeft(5))
+        Next
         'Generates the sum of two dice rolled values. Min of 2, Max of 12.
         'Accumulates the amount of times each value is rolled from 1000 rolls.
         For i = 1 To 1000
-            rollsResult = RandomNumber()
+            rollsResult = (CInt((5 * Rnd()) + 1) + CInt((5 * Rnd()) + 1))
             Select Case rollsResult
                 Case 2
                     numbers(2) += diceValue
@@ -49,54 +53,23 @@ Public Class RolloftheDiceForm
                     MsgBox($"Error!: {rollsResult}")
             End Select
         Next
-
+        'Adds dicevalues 2-12 from 1000 rolls to the display array.
         For i = 2 To UBound(numbers)
-            diceValueTotal = vbNewLine & ($"{numbers(i)}|".PadLeft(4) & vbTab) _
-                & vbNewLine & (StrDup(84, " - "))
+            diceValueTotal &= (($"{numbers(i)}|").PadLeft(5))
         Next
-
-        HiddenDisplayTextBox.Text = title & DiceValueDisplay() & diceValueTotal
-        HiddenDisplayComboBox.Items.Add(HiddenDisplayTextBox.Text)
-        RolloftheDiceListBox.Items.Add(HiddenDisplayTextBox.Text)
-        HiddenDisplayComboBox.Sorted = True
-        RolloftheDiceListBox.Sorted = True
-        HiddenDisplayComboBox.SelectedIndex = HiddenDisplayComboBox.Items.IndexOf(HiddenDisplayTextBox.Text)
-        HiddenDisplayTextBox.Text = ""
-
-        'display(0) = title
-        'display(1) = dashRow
-        'display(2) = DiceValueDisplay()
-        'display(3) = dashRow
-        'display(4) = diceValueTotal
-
-        'CancatinateDisplay(title, dashRow, DiceValueDisplay())
-        'RolloftheDiceListBox.Items.Add(display(0) & display(1))
-        'RolloftheDiceListBox.EndUpdate()
+        'Accumulates the display(4) from values accumulated.
+        display = {title, dashRow, countDisplay, dashRow, diceValueTotal}
+        'Adds the display array to the list box to display to user.
+        For i = 0 To UBound(display)
+            RolloftheDiceListBox.Items.Add(display(i))
+        Next
     End Sub
-    Private Sub HiddenDisplayComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles HiddenDisplayComboBox.SelectedIndexChanged
-        Me.Text = CStr(HiddenDisplayComboBox.SelectedIndex)
-        RolloftheDiceListBox.SelectedIndex = HiddenDisplayComboBox.SelectedIndex
-    End Sub
+    'Clears console when Clear button is clicked or when it is selected in the menu items.
     Private Sub ClearButton_Click(sender As Object, e As EventArgs) Handles ClearButton.Click, ClearTopMenuItem.Click
         RolloftheDiceListBox.Items.Clear()
     End Sub
+    'Closes console when Exit button is clicked or when it is selected in the menu items.
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click, ExitTopMenuItem.Click
         Me.Close()
     End Sub
-    Function DiceValueDisplay() As String
-        Dim countDisplay As String
-        For i = 2 To 12
-            countDisplay = vbNewLine & (($"{i}|").PadLeft(4) & vbTab)
-        Next
-        Return countDisplay
-    End Function
-
-    'Random value of roll of two dice
-    Function RandomNumber() As Integer
-        Dim value As Integer
-        Randomize()
-        value = (CInt((5 * Rnd()) + 1) + CInt((5 * Rnd()) + 1))
-        Return value
-    End Function
-
 End Class
